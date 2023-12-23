@@ -2,17 +2,17 @@ import logging
 import sqlite3
 import re
 
-global DB, DB_FILE
+import logging
+import sqlite3
+import re
 
-# TODO change this to your database file
-DB_FILE = 'aa.db'
 
+global DB
 DB = dict()
 
 def connect():
-  global DB, DB_FILE
-  c = sqlite3.connect(DB_FILE, check_same_thread=False)
-  print("connected", c)
+  global DB
+  c = sqlite3.connect('coisa.db', check_same_thread=False)
   c.row_factory = sqlite3.Row
   DB['conn'] = c
   DB['cursor'] = c.cursor()

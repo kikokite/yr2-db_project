@@ -1,17 +1,58 @@
 {% extends 'base.html' %}
-
+{% block header %}
+    <h1>{% block title %}Game database {% endblock %}</h1>
+{% endblock %}
 {% block content %}
+    <h4>About</h4>
+    <p>This web application illustrates the use of our Game
+        database. The application is built using
+        <a href="https://pymysql.readthedocs.io/">PyMySQL</a>,
+        <a href="https://flask.palletsprojects.com">Flask</a>, and
+        <a href="https://jinja.palletsprojects.com">Jinja</a>.
+        <br>
+        <br>
+        Webpage created and designed by Francisco Carqueija, Francisco Tavares and Mário Minhava.
+    </p>
+    <h2>Some database statistics</h2>
+    <table>
+        <tr>
+            <th>Items</th>
+            <th>Count</th>
+        </tr>
+        <tr>
+            <td>Games</td>
+            <td>{{ stats.g }}</td>
+          </tr>
+          <tr>
+            <td>Players</td>
+            <td>{{ stats.p }}</td>
+          </tr>
+          <tr>
+            <td>Moves</td>
+            <td>{{ stats.m }}</td>
+          </tr>
+          <tr>
+            <td>Observers</td>
+            <td>{{ stats.o }}</td>
+          </tr>
+          <tr>
+            <td>Achievments</td>
+            <td>{{ stats.a }}</td>
+          </tr>
+    </table>
 
-<!-- 
-  Conteúdo apenas simples para começar. 
- 
-  Veja aplicação fazendo interface à MovieStream para exemplos concretos.
--->
+    <h2>Sample functionality</h2>
 
-<h1>{{ message }}</h1>
+    <h3>Games</h3>
+    <p>
+       <a href="/games">List all</a>
+    </p>
+    <p>Get movie info:
+    <form name="mid" action="javascript:window.open('/games/'+document.forms['mid'].elements['id'].value,'_self')">
+       Movie Id:<input value="123" name="id" type="number" min="1"/><input type="submit" value="get"/>
+    </form>
+    </p>
 
-<h2> ... and hello again</h2>
 
-This is the entry page for the application!
 
 {% endblock %}
