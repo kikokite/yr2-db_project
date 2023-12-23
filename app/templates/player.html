@@ -1,1 +1,32 @@
 {% extends 'base.html' %}
+{% block content %}
+<h1>{{ player.name }}</h1>
+<p>
+  <b>ID: </b>{{ player.id_player }}
+</p>
+<p>
+  <b>Name: </b>{{ player.name }}
+</p>
+<p>
+  <b>Win/Lose: </b>{{ player.win_losses }}
+</p>
+<p>
+  <b>T Points: </b>{{ player.t_points }} 
+</p>
+<p>
+  <b>Member Since: </b>{{ player.member_since }}
+</p>
+<p>
+    <b>Player Since: </b>{{ player.play_since }} 
+</p>
+<p>
+    <b>Games Made: </b>{{ player.games_mades }} 
+</p>
+<p>
+    <b>Country: </b>{{ player.country }} 
+</p>
+<p>
+    <b>Puzzles Made: </b>{{ player.puzzles_made }} 
+</p>
+
+{%endblock %}

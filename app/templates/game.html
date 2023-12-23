@@ -1,2 +1,27 @@
 {% extends 'base.html' %}
+{% block content %}
+<h1> <b>ID Game: </b>{{ game.id_game }}</h1>
+<p>
+  <b>id_game: </b>{{ game.id_game }}
+</p>
+<p>
+  <b>Rated: </b>{{ game.rated }}
+</p>
+<p>
+  <b>Victory Status: </b>{{ game.victory_status }}
+</p>
+<p>
+  <b>Winner: </b>{{ game.winner }} 
+</p>
+<p>
+    <b>Increment Code: </b>{{ game.increment_code }}
+</p>
+<p>
+    <b>white_id: </b> {{ game.white_id }} 
+</p>
+<p>
+    <b>black_id: </b>{{ game.black_id }} 
+</p>
 
+
+{%endblock %}

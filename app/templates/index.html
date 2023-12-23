@@ -53,6 +53,15 @@
     </form>
     </p>
 
-
+    <h3>Players</h3>
+    <p>
+       <a href="/players">List all</a>
+    </p>
+    <p>Get actor info:
+    <form name="aid" action="javascript:window.open('/actors/'+document.forms['aid'].elements['id'].value,'_self')">
+       Actor Id:<input value="123" name="id" type="number" min="1"/><input type="submit" value="get"/>
+    </form>
+    </p>
+    
 
 {% endblock %}

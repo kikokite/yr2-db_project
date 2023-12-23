@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Player</h1>
+<table>
+  <tr>
+    <th>
+      <b>Id</b>
+    </th>
+    <th>
+      <b>Names</b>
+    </th>
+    <th>
+      <b>Win/Lose</b>
+    </th>
+    <th>
+      <b>T Points</b>
+    </th>
+    <th>
+      <b>Member Since</b>
+    </th>  
+    <th>
+      <b>Play Time</b>
+    </th>
+    <th>
+      <b>Games Made</b>
+    </th> 
+    <th>
+      <b>Country</b>
+    </th>
+    <th>
+      <b>Puzzles Made</b>
+    </th>  
+</tr>
+
+  {% for player in players %}
+  <tr>
+    <td>
+      <a href="/players/{{ player.id_player }}">{{ player.id_player }}</a>
+    </td>
+    <td>
+      {{ player.name }}
+    </td>
+    <td>
+      {{ player.win_losses }}
+    </td>
+    <td>
+      {{ player.t_points }}
+    </td>
+    <td>
+      {{ player.member_since }}
+    </td>
+    <td>
+      {{ player.play_time }}
+    </td>
+    <td>
+      {{ player.games_made }}
+    </td>
+    <td>
+      {{ player.country }}
+    </td>
+    <td>
+      {{ player.puzzles_made }}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

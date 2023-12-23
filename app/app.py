@@ -41,3 +41,51 @@ def list_games():
         ''').fetchall()
     return render_template ('game_list.html',games=games)
 
+
+@APP.route('/games/<int:id>/')
+def get_game(id):
+  game = db.execute(
+      '''
+      SELECT id_game, rated, victory_status, winner, increment_code, white_id, black_id
+      FROM GAMES 
+      WHERE id_game = ?
+      ''', [id]).fetchone()
+  
+  if game is None:
+     abort(404, 'Game id {} does not exist.'.format(id))
+
+  players = db.execute(
+     '''
+     SELECT id_game, moves, turns, opening_ply, opening_name
+     FROM GAMES NATURAL JOIN MOVES
+     WHERE id_game = ? 
+     ''', [id]).fetchone()
+  
+  return render_template('game.html', game = game, players = players)
+
+@APP.route('/players/')
+def list_players():
+   players = db.execute(
+      '''
+      SELECT id_player, name, win_losses, t_points, member_since, play_time, games_made, country,puzzles_made
+      FROM PLAYERS
+      ORDER BY id_player
+      ''').fetchall()
+   return render_template('players_list.html', players = players)
+
+
+@APP.route('/players/<int:id>/')
+def get_player(id):
+  player = db.execute(
+      '''
+      SELECT id_player, name, win_losses, t_points, member_since, play_time, games_made, country,puzzles_made
+      FROM PLAYERS
+      WHERE id_player = ?
+      ''', [id]).fetchone()
+  
+  if player is None:
+     abort(404, 'Player id {} does not exist.'.format(id))
+    
+  return render_template('player.html', player=player)
+
+
