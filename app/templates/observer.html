@@ -1,1 +1,16 @@
 {% extends 'base.html' %}
+{% block content %}
+<h1> <b>Username: </b>{{ observers.Name }}</h1>
+<p>
+  <b>Username: </b>{{ observers.Name }}
+</p>
+<p>
+  <b>Fan of: </b><a href = "/players/{{observers.id_Player}}">{{ observers.id_Player }}</a>
+</p>
+<p>
+  <b>id_Observer: </b>{{ observers.id_Observer }}
+</p>
+
+
+
+{%endblock %}

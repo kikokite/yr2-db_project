@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Observers</h1>
+<table>
+  <tr>
+    <th>
+      <b>Name</b>
+    </th>
+    <th>
+      <b>id_Player</b>
+    </th> 
+    <th>
+      <b>id_Observer</b>
+    </th> 
+</tr>
+
+  {% for observers in observers %}
+  <tr>
+    <td>
+      <a href="/observers/{{ observers.id_Observer }}">{{ observers.id_Observer }}</a>
+    </td>
+    <td>
+      {{ observers.Name }}
+    </td>
+    <td>
+      {{ observers.id_Player }}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

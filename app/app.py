@@ -61,7 +61,9 @@ def get_game(id):
      WHERE id_game = ? 
      ''', [id]).fetchone()
   
-  return render_template('game.html', game = game, players = players)
+  return render_template('game.html', game = game)
+
+
 
 @APP.route('/players/')
 def list_players():
@@ -88,4 +90,100 @@ def get_player(id):
     
   return render_template('player.html', player=player)
 
+@APP.route('/players/search/<expr>/')
+def search_player(expr):
+  search = { 'expr': expr }
+  expr = '%' + expr + '%'
+  players = db.execute(
+      ''' 
+      SELECT id_player, name
+      FROM PLAYERS 
+      WHERE name LIKE ?
+      ''', [expr]).fetchall()
+  return render_template('players-search.html',
+           search=search,players=players)
 
+@APP.route('/moves/')
+def list_moves():
+    moves=db.execute(
+        '''
+        SELECT id_game, moves, turns, opening_name, opening_ply
+        FROM MOVES
+        ORDER BY id_game
+        ''').fetchall()
+    return render_template ('moves_list.html',moves=moves)
+
+@APP.route('/moves/<int:id>/')
+def get_moves(id):
+  moves = db.execute(
+      '''
+      SELECT id_moves, id_game, moves, turns, opening_name, opening_ply
+      FROM MOVES
+      WHERE id_moves = ?
+      ''', [id]).fetchone()
+  
+  if moves is None:
+     abort(404, 'Moves id {} does not exist.'.format(id))
+
+  return render_template('moves.html', moves = moves)
+
+@APP.route('/observers/')
+def list_observers():
+    observers = db.execute( 
+        '''
+        SELECT id_Observer,Name,id_Player
+        FROM OBSERVERS
+        ORDER BY id_Observer
+
+    ''').fetchall()
+    return render_template ('observers_list.html',observers=observers)
+
+
+@APP.route('/observers/<int:id>/')
+def get_observers(id):
+  observers = db.execute(
+      '''
+      SELECT id_Observer, Name, id_Player
+      FROM OBSERVERS
+      WHERE id_Observer = ?
+      ''', [id]).fetchone()
+  
+  if observers is None:
+     abort(404, 'Observers id {} does not exist.'.format(id))
+
+  return render_template('observer.html', observers = observers)
+
+@APP.route('/achievments/')
+def list_achievments():
+   achievments = db.execute(
+      '''
+      SELECT id_achievment, Name, Description 
+      FROM ACHIEVMENTS
+      ORDER BY id_Achievment
+      ''').fetchall()
+   return render_template('achievments_list.html', achievments=achievments)
+
+@APP.route('/achievments/<int:id>/')
+def get_achievments(id):
+  achievment = db.execute(
+      '''
+      SELECT id_achievment, Name, Description
+      FROM ACHIEVMENTS
+      WHERE id_achievment = ?
+      ''', [id]).fetchone()
+  
+  if achievment is None:
+     abort(404, 'Achievment id {} does not exist.'.format(id))
+
+  return render_template('achievment.html', achievment = achievment)
+
+@APP.route('/achievments/search/<expr>/')
+def search_achievment(expr):
+  search = { 'expr': expr }
+  achievment = db.execute(
+      ' SELECT id_achievment, Description'
+      ' FROM ACHIEVMENTS '
+      ' WHERE Description LIKE \'%' + expr + '%\''
+    ).fetchall()
+  return render_template('achievments-search.html',
+           search=search,achievment=achievment)

@@ -47,9 +47,9 @@
     <p>
        <a href="/games">List all</a>
     </p>
-    <p>Get movie info:
+    <p>Get Game info:
     <form name="mid" action="javascript:window.open('/games/'+document.forms['mid'].elements['id'].value,'_self')">
-       Movie Id:<input value="123" name="id" type="number" min="1"/><input type="submit" value="get"/>
+       Game ID:<input value="123" name="id" type="number" min="1"/><input type="submit" value="get"/>
     </form>
     </p>
 
@@ -57,10 +57,52 @@
     <p>
        <a href="/players">List all</a>
     </p>
-    <p>Get actor info:
-    <form name="aid" action="javascript:window.open('/actors/'+document.forms['aid'].elements['id'].value,'_self')">
-       Actor Id:<input value="123" name="id" type="number" min="1"/><input type="submit" value="get"/>
+    <p>Get Player info:
+    <form name="aid" action="javascript:window.open('/players/'+document.forms['aid'].elements['id'].value,'_self')">
+       Player Id:<input value="123" name="id" type="number" min="1"/><input type="submit" value="get"/>
     </form>
+    </p>
+    <p>Search by name (prone to <a href="https://en.wikipedia.org/wiki/SQL_injection">SQL injection</a>!)
+      <form name="msearch" action="javascript:window.open('/players/search/'+document.forms['msearch'].elements['expr'].value,'_self')">
+        <input name="expr" id="expr" value="João" required/>
+        <input type="submit" value="search"/>
+      </form>
+    </p>
+
+    <h3>Moves</h3>
+    <p>
+       <a href="/moves">List all</a>
+    </p>
+    <p>Get Moves info:
+    <form name="mid" action="javascript:window.open('/moves/'+document.forms['mid'].elements['id'].value,'_self')">
+       Game ID:<input value="123" name="id" type="number" min="1"/><input type="submit" value="get"/>
+    </form>
+    </p>
+  
+    <h3>Observers</h3>
+    <p>
+       <a href="/observers">List all</a>
+    </p>
+    <p>Get Observers info:
+    <form name="mid" action="javascript:window.open('/observers/'+document.forms['mid'].elements['id'].value,'_self')">
+       Observer ID:<input value="123" name="id" type="number" min="1"/><input type="submit" value="get"/>
+    </form>
+    </p>
+
+    <h3>Achievments</h3>
+    <p>
+       <a href="/achievments">List all</a>
+    </p>
+    <p>Get Achievment info:
+    <form name="aid" action="javascript:window.open('/achievments/'+document.forms['aid'].elements['id'].value,'_self')">
+       Achievment Id:<input value="123" name="id" type="number" min="1"/><input type="submit" value="get"/>
+    </form>
+    </p>
+    <p>Search by name (prone to <a href="https://en.wikipedia.org/wiki/SQL_injection">SQL injection</a>!)
+      <form name="asearch" action="javascript:window.open('/achievments/search/'+document.forms['asearch'].elements['expr'].value,'_self')">
+        <input name="expr" id="expr" value="João" required/>
+        <input type="submit" value="search"/>
+      </form>
     </p>
     
 

@@ -44,10 +44,10 @@
       {{ game.increment_code }}
     </td>
     <td>
-      <a href="/players/{{ game.id_player }}">{{ game.white_id }}</a>
+      <a href="/players/{{ game.white_id }}">{{ game.white_id }}</a>
     </td>
     <td>
-      {{ game.black_id }}
+      <a href="/players/{{ game.black_id }}">{{ game.black_id }}</a>
     </td>
   </tr>
   {% endfor %}

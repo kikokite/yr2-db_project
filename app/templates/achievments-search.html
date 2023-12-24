@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Search results</h1>
+<p><b>Search expression</b>: "{{ search.expr }}"</p>
+<p>
+<ul>
+  {% for a in achievment %}
+  <li>
+    <a href="/achievments/{{ a.id_achievment }}">{{ a.Description }}</a>
+  </li>
+  {% endfor %}
+</ul>
+</p>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Achievments</h1>
+<table>
+    <tr>
+      <th>
+        <b>Id</b>
+      </th>
+      <th>
+        <b>Name</b>
+      </th>
+      <th>
+        <b>Description</b>
+      </th>
+  </tr>
+
+  {% for achievments in achievments %}
+  <tr>
+    <td>
+      <a href="/achievments/{{ achievments.id_achievment }}">{{ achievments.id_achievment }}</a>
+    </td>
+    <td>
+      {{ achievments.Name }}
+    </td>
+    <td>
+      {{ achievments.Description}}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
