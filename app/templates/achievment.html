@@ -10,6 +10,15 @@
 <p>
   <b>Description: </b>{{ achievment.Description }}
 </p>
-
+<p>
+<h2><b> Players with this achievement: </b></h2>
+<ul>
+  {% for p in players %}
+  <li>
+    <a href="/players/{{ p.id_player }}">{{ p.name }}</a>
+  </li>
+  {% endfor %}
+</ul>
+</p>
 
 {%endblock %}

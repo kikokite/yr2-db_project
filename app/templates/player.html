@@ -28,5 +28,38 @@
 <p>
     <b>Puzzles Made: </b>{{ player.puzzles_made }} 
 </p>
+<p>
+  <h2><b>Games {{player.name}} made: </b></h2>
+<ul>
+  {% for g in games %}
+  <li>
+    <a href="/games/{{ g.id_game }}">{{ g.id_game }}</a>
+  </li>
+  {% endfor %}
+</ul>
+</p>
+
+<p>
+  <h2><b>{{player.name}} Achievments: </b></h2>
+<ul>
+  {% for a in achievments %}
+  <li>
+    <a href="/achievments/{{ a.id_achievment }}">{{ a.Name }}</a>
+  </li>
+  {% endfor %}
+</ul>
+</p>
+
+<p>
+  <h2><b>{{player.name}} biggest fan(s): </b></h2>
+<ul>
+  {% for o in observers %}
+  <li>
+    <a href="/observers/{{ o.id_Observer }}">{{ o.Name }}</a>
+  </li>
+  {% endfor %}
+</ul>
+</p>
+
 
 {%endblock %}

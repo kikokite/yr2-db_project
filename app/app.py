@@ -54,14 +54,30 @@ def get_game(id):
   if game is None:
      abort(404, 'Game id {} does not exist.'.format(id))
 
-  players = db.execute(
+  player1 = db.execute(
      '''
-     SELECT id_game, moves, turns, opening_ply, opening_name
-     FROM GAMES NATURAL JOIN MOVES
-     WHERE id_game = ? 
-     ''', [id]).fetchone()
+     SELECT p.id_player, p.name
+     FROM PLAYERS AS p JOIN GAMES g ON p.id_player = g.white_id
+     WHERE g.id_game = ?
+     ''', [id]).fetchall()
   
-  return render_template('game.html', game = game)
+  player2 = db.execute(
+     '''
+     SELECT p.id_player, p.name
+     FROM PLAYERS AS p JOIN GAMES g ON  p.id_player = g.black_id
+     WHERE g.id_game = ?
+     ''', [id]).fetchall()
+  
+  observers = db.execute(
+     '''
+     SELECT o.id_Observer,o.Name
+     FROM GAMES AS g 
+     JOIN OBSGAME og ON g.id_game = og.id_Game
+     JOIN OBSERVERS o ON og.id_Observer = o.id_Observer
+     WHERE g.id_Game = ?
+     ''', [id]).fetchall()
+  
+  return render_template('game.html', game = game, player1=player1, player2=player2, observers = observers)
 
 
 
@@ -87,8 +103,31 @@ def get_player(id):
   
   if player is None:
      abort(404, 'Player id {} does not exist.'.format(id))
+
+  games = db.execute(
+     '''
+     SELECT id_game 
+     FROM GAMES
+     WHERE white_id = ? OR black_id = ?
+     ORDER BY id_game
+     ''', (id,id)).fetchall()
+  
+  achievments = db.execute(
+     '''
+     SELECT a.id_achievment, a.Name
+     FROM PLAYERS AS p
+     JOIN PLAYERACHIEVS AS pa ON p.id_player = pa.id_player
+     JOIN ACHIEVMENTS AS a ON pa.id_achievment = a.id_achievment
+     WHERE p.id_player = ?
+     ''',[id]).fetchall()
     
-  return render_template('player.html', player=player)
+  observers = db.execute(
+     '''
+     SELECT id_Observer, id_Player, Name
+     FROM OBSERVERS 
+     WHERE id_Player = ?
+     ''',[id]).fetchall()
+  return render_template('player.html', player=player, games=games, achievments=achievments, observers=observers)
 
 @APP.route('/players/search/<expr>/')
 def search_player(expr):
@@ -172,10 +211,19 @@ def get_achievments(id):
       WHERE id_achievment = ?
       ''', [id]).fetchone()
   
+  players = db.execute(
+     '''
+     SELECT p.id_player, p.name
+     FROM PLAYERS AS p
+     JOIN PLAYERACHIEVS AS pa ON p.id_player = pa.id_player
+     JOIN ACHIEVMENTS AS a ON pa.id_achievment = a.id_achievment
+     WHERE a.id_achievment = ?
+     ''', [id]).fetchall()
+  
   if achievment is None:
      abort(404, 'Achievment id {} does not exist.'.format(id))
 
-  return render_template('achievment.html', achievment = achievment)
+  return render_template('achievment.html', achievment = achievment, players = players)
 
 @APP.route('/achievments/search/<expr>/')
 def search_achievment(expr):

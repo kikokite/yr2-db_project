@@ -23,5 +23,24 @@
     <b>Black_id: <a href="/players/{{ game.black_id }}">{{ game.black_id }}</a></b>
 </p>
 
+<p>
+  <h2> Played By: </h2>
+</p>
+<p>
+  <b> White: <a href="/players/{{ game.white_id }}">{{ game.white_id }}</a></b> 
+</p>
+<p>  
+  <b>Black: <a href="/players/{{ game.black_id }}">{{ game.black_id }}</a></b>
+</p>
 
+<p>
+  <h2><b> Who watched this game: </b></h2>
+<ul>
+  {% for o in observers %}
+  <li>
+    <a href="/observers/{{ o.id_Observer }}">{{ o.Name }}</a>
+  </li>
+  {% endfor %}
+</ul>
+</p>
 {%endblock %}
