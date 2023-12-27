@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1> <b>ID Game: </b>{{ game.id_game }}</h1>
+<h1> <b>Game ID: </b>{{ game.id_game }}</h1>
 <p>
-  <b>id_game: </b>{{ game.id_game }}
+  <b>Game ID: </b>{{ game.id_game }}
 </p>
 <p>
   <b>Rated: </b>{{ game.rated }}
@@ -17,20 +17,20 @@
     <b>Increment Code: </b>{{ game.increment_code }}
 </p>
 <p>
-    <b> White ID: <a href="/players/{{ game.white_id }}">{{ game.white_id }}</a></b> 
+    <b>White ID: <a href="/players/{{ game.white_id }}">{{ game.white_id }}</a></b> 
 </p>
 <p>
-    <b>Black_id: <a href="/players/{{ game.black_id }}">{{ game.black_id }}</a></b>
+    <b>Black ID: <a href="/players/{{ game.black_id }}">{{ game.black_id }}</a></b>
 </p>
 
 <p>
   <h2> Played By: </h2>
 </p>
 <p>
-  <b> White: <a href="/players/{{ game.white_id }}">{{ game.white_id }}</a></b> 
+  <b> White: <a href="/players/{{ game.white_id }}">{{ player1.name }}</a></b> 
 </p>
 <p>  
-  <b>Black: <a href="/players/{{ game.black_id }}">{{ game.black_id }}</a></b>
+  <b>Black: <a href="/players/{{ game.black_id }}">{{ player2.name }}</a></b>
 </p>
 
 <p>
@@ -41,6 +41,14 @@
     <a href="/observers/{{ o.id_Observer }}">{{ o.Name }}</a>
   </li>
   {% endfor %}
+</ul>
+</p>
+
+<p>
+  <h2><b> Moves in the game: </b></h2>
+<ul>
+    <b> Moves ID: <a href="/moves/{{ moves.id_moves }}">{{ moves.id_moves }}</a></b>
+    <p>{{moves.moves}}</p>
 </ul>
 </p>
 {%endblock %}

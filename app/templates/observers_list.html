@@ -4,13 +4,13 @@
 <table>
   <tr>
     <th>
-      <b>id_Observer</b>
+      <b>ID</b>
     </th>
     <th>
       <b>Name</b>
     </th> 
     <th>
-      <b>id_Player</b>
+      <b>Fan of</b>
     </th> 
 </tr>
 
@@ -23,8 +23,7 @@
       {{ observers.Name }}
     </td>
     <td>
-      <!-- fazer hiperligacao para player -->
-      {{ observers.id_Player }} 
+      <a href = "/players/{{observers.id_Player }}"> {{ observers.id_Player }}</a> 
     </td>
   </tr>
   {% endfor %}
