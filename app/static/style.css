@@ -293,9 +293,6 @@ kbd {
   box-shadow: inset 0 -1px 0 #bbb
 }
 
-* {
-	-webkit-print-color-adjust: exact;
-}
 @media screen and (min-width: 914px) {
     body {
         width: 854px;
@@ -310,3 +307,28 @@ kbd {
 		word-wrap: break-word;
 	}
 }
+.image-container {
+  position: relative;
+  margin-top: 50px;
+}
+
+.title-text {
+  position: absolute;
+  top: -35px; /* Adjust the top position as needed */
+  left: 50%;
+  font-size: 30px;
+  transform: translateX(-50%);
+  z-index: 10; /* Ensure it's above the image and overlay */
+  font-family: 'Anton', sans-serif;
+  
+}
+
+.text-container {
+  text-align: center;
+  margin-top: 10px; /* Adjust the margin as needed */
+  font-size: 15px;
+
+}
+
+
+
