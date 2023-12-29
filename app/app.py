@@ -49,6 +49,7 @@ def get_game(id):
       SELECT id_game, rated, victory_status, winner, increment_code, white_id, black_id
       FROM GAMES 
       WHERE id_game = ?
+      GROUP BY id_game      
       ''', [id]).fetchone()
   
   if game is None:
@@ -106,6 +107,7 @@ def get_player(id):
       SELECT id_player, name, win_losses, t_points, member_since, play_time, games_made, country,puzzles_made
       FROM PLAYERS
       WHERE id_player = ?
+      GROUP BY name
       ''', [id]).fetchone()
   
   if player is None:
