@@ -42,22 +42,30 @@
 <p>
   <h2><b>{{player.name}} Achievments: </b></h2>
 <ul>
+  {%if achievments%}
   {% for a in achievments %}
   <li>
     <a href="/achievments/{{ a.id_achievment }}">{{ a.Name }}</a>
   </li>
   {% endfor %}
+  {%else%}
+  <em> This player has no achievments </em>
+  {%endif%}
 </ul>
 </p>
 
 <p>
   <h2><b>{{player.name}} biggest fan(s): </b></h2>
 <ul>
+  {%if observers%}
   {% for o in observers %}
   <li>
     <a href="/observers/{{ o.id_Observer }}">{{ o.Name }}</a>
   </li>
   {% endfor %}
+  {%else%}
+    <em>  This player player has no fans  </em>
+  {% endif %}
 </ul>
 </p>
 

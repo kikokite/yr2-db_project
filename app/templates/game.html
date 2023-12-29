@@ -36,11 +36,15 @@
 <p>
   <h2><b> Who watched this game: </b></h2>
 <ul>
+  {%if observers%}
   {% for o in observers %}
   <li>
     <a href="/observers/{{ o.id_Observer }}">{{ o.Name }}</a>
   </li>
   {% endfor %}
+  {%else%}
+  <em> No one watched this game </em>
+  {%endif%}
 </ul>
 </p>
 
