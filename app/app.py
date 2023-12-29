@@ -31,6 +31,25 @@ def index():
 
     return render_template('index.html',stats=stats)
 
+@APP.route('/games-stats/')
+def statistics():
+    
+   top50_games = db.execute(
+      '''
+      SELECT m.id_game, g.id_game, g.white_id, g.black_id, o.id_Observer, o.Name, m.turns
+      FROM MOVES AS m
+      JOIN GAMES g ON m.id_game = g.id_game
+      JOIN OBSGAME og ON g.id_game = og.id_Game
+      JOIN OBSERVERS o ON og.id_Observer = o.id_observer
+      GROUP BY m.turns
+      ORDER BY m.turns DESC 
+      LIMIT 50
+      ''').fetchall()
+
+   return render_template('games-stats.html',top50_games=top50_games)
+
+
+
 @APP.route('/games/')
 def list_games():
     games = db.execute(
@@ -136,6 +155,7 @@ def get_player(id):
      FROM OBSERVERS 
      WHERE id_Player = ?
      ''',[id]).fetchall()
+  
   return render_template('player.html', player=player, games=games, achievments=achievments, observers=observers)
 
 @APP.route('/players/search/<expr>/')
@@ -150,6 +170,21 @@ def search_player(expr):
       ''', [expr]).fetchall()
   return render_template('players-search.html',
            search=search,players=players)
+
+@APP.route('/players-stats/')
+def top_player():
+   player = db.execute(
+      '''
+      SELECT p.id_player, p.name AS pname, p.games_made, o.name AS oname, o.id_Observer, COUNT(pa.id_achievment) AS achievements_count
+      FROM PLAYERS AS p 
+      JOIN OBSERVERS o ON p.id_player = o.id_Player 
+      JOIN PLAYERACHIEVS pa ON p.id_player = pa.id_player
+      JOIN ACHIEVMENTS a ON a.id_achievment = pa.id_achievment
+      GROUP BY p.id_player
+      ORDER BY p.games_made DESC
+      LIMIT 50
+      ''').fetchall()
+   return render_template('player-stats.html', player= player)
 
 @APP.route('/moves/')
 def list_moves():

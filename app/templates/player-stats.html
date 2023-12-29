@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+    <h2>Top 50 Players with most games</h2>
+        
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Games Made</th>
+                        <th>Fan Name</th>
+                        <th>No. Achievments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for info in player %}
+                        <tr>
+                            <td><a href="/players/{{info.id_player}}"> {{ info.pname }}</a></td>
+                            <td>{{ info.games_made }}</td>
+                            <td><a href ="/observers/{{info.id_Observer}}"> {{ info.oname }}</a></td>
+                            <td>{{ info.achievements_count}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+           
+</div>
+{% endblock %}
+    

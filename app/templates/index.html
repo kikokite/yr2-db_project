@@ -26,7 +26,6 @@
 </div>
 
 
-
     <h2>Some database statistics</h2>
     <table>
         <tr>
@@ -59,17 +58,20 @@
 
     <h3>Games</h3>
     <p>
-       <a href="/games">List all</a>
+       <a href="/games"> <h4>List all</h4></a>
     </p>
     <p>Get Game info:
     <form name="gid" action="javascript:window.open('/games/'+document.forms['gid'].elements['id'].value,'_self')">
        Game ID:<input value="100" name="id" type="number" min="1"/><input type="submit" value="get"/>
     </form>
     </p>
+    <p>
+      <a href="/games-stats"><h4>Top 50 Longest Games</h4></a>
+   </p>
 
     <h3>Players</h3>
     <p>
-       <a href="/players">List all</a>
+       <a href="/players"><h4>List all</h4></a>
     </p>
     <p>Get Player info:
     <form name="pid" action="javascript:window.open('/players/'+document.forms['pid'].elements['id'].value,'_self')">
@@ -82,10 +84,15 @@
         <input type="submit" value="search"/>
       </form>
     </p>
+    <p>
+      <a href="/players-stats"><h4>Top 50 Players with most games made</h4></a>
+   </p>
+
+   
 
     <h3>Moves</h3>
     <p>
-       <a href="/moves">List all</a>
+       <a href="/moves"><h4>List all</h4></a>
     </p>
     <p>Get Moves info:
     <form name="mid" action="javascript:window.open('/moves/'+document.forms['mid'].elements['id'].value,'_self')">
@@ -95,7 +102,7 @@
   
     <h3>Observers</h3>
     <p>
-       <a href="/observers">List all</a>
+       <a href="/observers"><h4>List all</h4></a>
     </p>
     <p>Get Observer info:
     <form name="oid" action="javascript:window.open('/observers/'+document.forms['oid'].elements['id'].value,'_self')">
@@ -105,7 +112,7 @@
 
     <h3>Achievments</h3>
     <p>
-       <a href="/achievments">List all</a>
+       <a href="/achievments"><h4>List all</h4></a>
     </p>
     <p>Get Achievment info:
     <form name="aid" action="javascript:window.open('/achievments/'+document.forms['aid'].elements['id'].value,'_self')">
