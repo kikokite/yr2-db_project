@@ -1,5 +1,6 @@
 # Desenvolvimento da aplicação da 2ª parte do projeto
 
+**Authors: Francisco Carqueija, Francisco Tavares, Mário Minhava**
 
 ## Tema
 
